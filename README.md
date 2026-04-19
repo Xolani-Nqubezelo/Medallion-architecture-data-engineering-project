@@ -60,5 +60,11 @@ After completing the setup, the next step is to begin building pipelines in Azur
 
 ### Connecting ADF to Azure SQL Database
 The connection between Azure Data Factory (ADF) and the SQL database is established using a linked service. To access this, go to the **Manage** section in the sidebar, then select **Linked Services** under Connections and click **+ New**. Provide the database details and authentication credentials, then test the connection to confirm it has been successfully established.
+<img width="1917" height="947" alt="image" src="https://github.com/user-attachments/assets/2ff1f0b2-f27a-4083-9842-330577555696" />
+
+### Connecting ADF to Azure Data Lake Gen2
+Similarly, we need to set up a connection to the data lakehouse that hosts our medallion architecture. In this case, we’ll connect to the bronze layer, where raw data is initially ingested before being processed and refined into the silver layer.
+<img width="1913" height="938" alt="image" src="https://github.com/user-attachments/assets/e734e998-8c65-4a85-8726-858bebc014d1" />
+
 
 
