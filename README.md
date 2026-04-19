@@ -95,6 +95,7 @@ To achieve this, add a Copy Data activity from the Move & Transform section into
 For the sink, select the Parquet file format and create a Parquet output dataset in Azure Data Lake Storage Gen2. This will use the linked service that was configured earlier. Set the file path to bronze, and leave the directory and file name empty, as these will be dynamically populated using parameters.
 <img width="1912" height="907" alt="image" src="https://github.com/user-attachments/assets/74dfb7f0-b6fe-4fcd-bd14-de9b0bd5eb14" />
 
+For the sink, we need to create a Parquet file output in Azure Data Lake Storage Gen2. This will use the linked service that was set up earlier. We’ll specify bronze as the file path, while leaving the directory and file name blank, since these will be populated dynamically using parameters.
 <img width="1912" height="905" alt="image" src="https://github.com/user-attachments/assets/48474afd-d243-428b-93e0-717ad984869c" />
 
 
