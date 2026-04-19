@@ -72,6 +72,29 @@ Dynamic Content allows us to have a parameterised placeholder in our pipeline. W
 SourceTables: Create a new dataset using the AzureSqlDatabase1 linked service defined earlier to dynamically retrieve the list of tables from the database’s information schema. This dataset is created without specifying a table name.
 
 SqlTable: Similarly, create the SqlTable dataset using the same AzureSqlDatabase1 linked service. This dataset is also defined without a fixed table name, but it will include parameters to allow dynamic table selection.
+<img width="1917" height="940" alt="image" src="https://github.com/user-attachments/assets/4707a457-a465-4f93-b570-28586ae2a1c9" />
+
+Returning to the pipeline, we need to add a Lookup activity to the canvas. Within this activity, we’ll configure it to use the TablesQuery dataset. In the Settings tab, select the Query option and provide the required query.
+<img width="1915" height="902" alt="image" src="https://github.com/user-attachments/assets/33326d12-d544-4e77-9210-18f2ac48a93c" />
+
+### Iterating Through the Lookup Results
+Once the query executes, the TablesQuery dataset is automatically populated with an array containing fields such as table_catalog, table_schema, table_name, and table_type. To process each of these records, we use a ForEach activity.
+
+### ForEach Activity
+The ForEach activity allows us to access and iterate over individual records within the array returned by the Lookup. To set this up, drag and drop the ForEach activity onto the pipeline and configure its Items property using dynamic content.
+<img width="1917" height="906" alt="image" src="https://github.com/user-attachments/assets/583433b1-f1a4-40a1-a3e1-46bdffe914a8" />
+
+<img width="1917" height="910" alt="image" src="https://github.com/user-attachments/assets/2c13bdfb-ae7f-4beb-a07e-dc2ebd1dea52" />
+### Loading Table Data into the Bronze Layer
+After configuring the ForEach activity to use @activity('Fetch All Tables').output.value, the next step is to define the actions to be executed for each item in the array.
+
+To achieve this, add a Copy Data activity from the Move & Transform section into the ForEach pipeline. Configure it to use the second dataset (SqlTable), which supports parameterization. Below is how the source is set up.
+
+<img width="1917" height="898" alt="image" src="https://github.com/user-attachments/assets/5daff713-f648-4c4f-be50-7722f904b36c" />
+
+For the sink, select the Parquet file format and create a Parquet output dataset in Azure Data Lake Storage Gen2. This will use the linked service that was configured earlier. Set the file path to bronze, and leave the directory and file name empty, as these will be dynamically populated using parameters.
+<img width="1912" height="907" alt="image" src="https://github.com/user-attachments/assets/74dfb7f0-b6fe-4fcd-bd14-de9b0bd5eb14" />
+
 
 
 
