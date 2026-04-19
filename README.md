@@ -69,6 +69,13 @@ Similarly, we need to set up a connection to the data lakehouse that hosts our m
 Dynamic Content allows us to have a parameterised placeholder in our pipeline. We’ll be creating two datasets, SourceTables and SqlTable each of which will help us fetch data from the SQL database dynamically and with parameters.
 <img width="1907" height="902" alt="image" src="https://github.com/user-attachments/assets/9b487d08-bbbf-40ba-bec0-25fdba58f211" />
 
+SourceTables: Create a new dataset using the AzureSqlDatabase1 linked service defined earlier to dynamically retrieve the list of tables from the database’s information schema. This dataset is created without specifying a table name.
+
+SqlTable: Similarly, create the SqlTable dataset using the same AzureSqlDatabase1 linked service. This dataset is also defined without a fixed table name, but it will include parameters to allow dynamic table selection.
+
+
+
+
 
 
 
