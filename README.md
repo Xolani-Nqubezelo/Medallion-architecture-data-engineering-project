@@ -66,5 +66,9 @@ The connection between Azure Data Factory (ADF) and the SQL database is establis
 Similarly, we need to set up a connection to the data lakehouse that hosts our medallion architecture. In this case, we’ll connect to the bronze layer, where raw data is initially ingested before being processed and refined into the silver layer.
 <img width="1913" height="938" alt="image" src="https://github.com/user-attachments/assets/e734e998-8c65-4a85-8726-858bebc014d1" />
 
+Dynamic Content allows us to have a parameterised placeholder in our pipeline. We’ll be creating two datasets, SourceTables and SqlTable each of which will help us fetch data from the SQL database dynamically and with parameters.
+<img width="1907" height="902" alt="image" src="https://github.com/user-attachments/assets/9b487d08-bbbf-40ba-bec0-25fdba58f211" />
+
+
 
 
