@@ -1,6 +1,8 @@
 # Building Data Pipelines for Modern Data Engineering | End to End Data Engineering Project (Medallion Architecture)
 
 # Tools and Technologies
+<img width="1325" height="735" alt="image" src="https://github.com/user-attachments/assets/182c1d81-8787-419b-824a-5552ef9bbf9f" />
+
 We’ll explore how to set up an end-to-end data engineering project using a suite of Azure services, integrating dbt for efficient data transformations. Here’s a detailed breakdown of each component and its role in our project:
 
 Cloud Provider — Azure: Azure will be our foundational cloud platform, providing a robust and scalable environment for all our data operations. Azure’s wide array of services and tools offers a cohesive ecosystem, ensuring seamless integration and management of our data pipeline components.
@@ -94,14 +96,23 @@ To achieve this, add a Copy Data activity from the Move & Transform section into
 
 For the sink, select the Parquet file format and create a Parquet output dataset in Azure Data Lake Storage Gen2. This will use the linked service that was configured earlier. Set the file path to bronze, and leave the directory and file name empty, as these will be dynamically populated using parameters.
 <img width="1912" height="907" alt="image" src="https://github.com/user-attachments/assets/74dfb7f0-b6fe-4fcd-bd14-de9b0bd5eb14" />
-
-For the sink, we need to create a Parquet file output in Azure Data Lake Storage Gen2. This will use the linked service that was set up earlier. We’ll specify bronze as the file path, while leaving the directory and file name blank, since these will be populated dynamically using parameters.
 <img width="1912" height="905" alt="image" src="https://github.com/user-attachments/assets/48474afd-d243-428b-93e0-717ad984869c" />
+In the pipeline, configure the sink by passing the required parameters (FolderName and FileName), with the file path set to bronze.
+<img width="1913" height="902" alt="image" src="https://github.com/user-attachments/assets/91113fd7-fca9-4276-b4f9-64d10f938b0e" />
 
+The final step in completing the Copy Data activity is to select ParquetFileOutput as the sink from the dropdown. Below are the expressions used for the FolderName and FileName parameters:
 
+Folder: @formatDateTime(utcnow(), 'yyyyMMdd')
 
+File: @concat(item().table_schema, '.', item().table_name, '.parquet')
+<img width="1913" height="897" alt="image" src="https://github.com/user-attachments/assets/0b4a146b-c357-4d85-88a5-213c21432bf8" />
+If you trigger (debug) this pipeline, you will be able to see the data dumped into the bronze layer correctly.
+<img width="1913" height="897" alt="image" src="https://github.com/user-attachments/assets/f2c7a4c5-96eb-4f35-827c-305981c0daa1" />
 
+<img width="1918" height="912" alt="image" src="https://github.com/user-attachments/assets/abd4be8b-0475-4d3d-a71a-a30754dd20a7" />
+In your bronze container you should be seeing parquet files:
+<img width="1915" height="915" alt="image" src="https://github.com/user-attachments/assets/b99d9046-522b-4d33-8ccb-711963732b61" />
 
-
+The final step in the pipeline is to add the Databricks notebook activity. We’ll return to this after completing the Azure Databricks setup.
 
 
