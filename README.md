@@ -5,9 +5,9 @@
 
 We’ll explore how to set up an end-to-end data engineering project using a suite of Azure services, integrating dbt for efficient data transformations. Here’s a detailed breakdown of each component and its role in our project:
 
-Cloud Provider — Azure: Azure will be our foundational cloud platform, providing a robust and scalable environment for all our data operations. Azure’s wide array of services and tools offers a cohesive ecosystem, ensuring seamless integration and management of our data pipeline components.
+Cloud Provider - Azure: Azure will be our foundational cloud platform, providing a robust and scalable environment for all our data operations. Azure’s wide array of services and tools offers a cohesive ecosystem, ensuring seamless integration and management of our data pipeline components.
 
-Database — Azure SQL: We will utilize Azure SQL, the cloud-based version of Microsoft SQL Server, as our primary database system. This choice brings the reliability and familiarity of SQL Server into a flexible, cloud-native environment. For demonstration purposes, we’ll employ the AdventureWorks LT sample database, which provides a rich dataset for various transformation scenarios.
+Database - Azure SQL: We will utilize Azure SQL, the cloud-based version of Microsoft SQL Server, as our primary database system. This choice brings the reliability and familiarity of SQL Server into a flexible, cloud-native environment. For demonstration purposes, we’ll employ the AdventureWorks LT sample database, which provides a rich dataset for various transformation scenarios.
 
 Azure Data Lake: As a central repository for our large-scale data storage and analytics, Azure Data Lake will play a crucial role. It offers a secure, scalable, and cost-effective storage solution, capable of handling massive volumes of structured and unstructured data. This will be instrumental in storing raw data, intermediate results, and final outputs in various formats.
 
