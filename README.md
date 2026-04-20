@@ -115,4 +115,29 @@ In your bronze container you should be seeing parquet files:
 
 The final step in the pipeline is to add the Databricks notebook activity. We’ll return to this after completing the Azure Databricks setup.
 
+### Setting Up Databricks
+To set up Databricks in Azure, search for “Databricks” using the search bar or locate it in the navigation pane. Create a new instance by completing the required details. Once deployment is complete, navigate to the resource and click “Launch Workspace” to open the Azure Databricks workspace in a new tab.
+<img width="1911" height="943" alt="image" src="https://github.com/user-attachments/assets/ef7eff96-9ec3-4bcd-aad8-c882d3b06b93" />
+
+After launching our databricks notebook, navigate to workspaces and create a new one or create a folder under the default workspace:
+<img width="1901" height="932" alt="image" src="https://github.com/user-attachments/assets/5f438cd8-bd5f-4c4a-a4ca-70694bf6dcb1" />
+Now right-click on the workspace or folder and create a new notebook: *BaseMedallionNotebook*
+
+### Linking Key Vault to Azure Databricks
+As mentioned earlier, Key Vault stores all our secrets. To integrate it with Databricks, you need to connect Databricks to the Key Vault’s DNS and resource endpoint. This is done by appending #secrets/createScope to your workspace URL. For example, the full URL would look like this:
+
+Storgae account key: <img width="1905" height="902" alt="image" src="https://github.com/user-attachments/assets/bad44e6d-464c-43c5-a1f9-f451329717e6" />
+
+When you access the key vault you should be able to see the secret you just created:
+<img width="1916" height="946" alt="image" src="https://github.com/user-attachments/assets/55f28e2f-628d-4305-94bb-c9327ab5c4af" />
+
+Under setting on your key vaults, copy the Vault URI and paste it on Databricks:
+<img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/824718be-c1a5-4f51-b5fe-ebe83c636a9e" />
+
+To access secrets on Databricks you need to add "#secrets/createScope" to your databricks root url:
+<img width="1907" height="995" alt="image" src="https://github.com/user-attachments/assets/9a932deb-07a3-422e-8cdd-0af67301c155" />
+
+Now create a compute, A compute refers to the processing resources used to run your workloads—such as notebooks, jobs, and data pipelines
+<img width="1897" height="922" alt="image" src="https://github.com/user-attachments/assets/0e2d708f-2976-4943-a344-4b3acc7ad017" />
+(This should take a few minutes to load).
 
