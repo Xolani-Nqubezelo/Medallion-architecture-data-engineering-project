@@ -1,0 +1,94 @@
+version: 2
+
+models:
+  - name: gold_sales_summary
+    description: >
+      Monthly sales KPIs aggregated from silver_salesorder. Powers executive
+      dashboards and trend analysis reports. Each row represents one calendar
+      month of sales activity.
+    columns:
+      - name: order_month
+        description: Calendar month in YYYY-MM format.
+        tests:
+          - unique
+          - not_null
+      - name: order_year
+        tests:
+          - not_null
+      - name: order_month_num
+        tests:
+          - not_null
+      - name: total_orders
+        description: Distinct count of sales order IDs in the month.
+        tests:
+          - not_null
+      - name: unique_customers
+        description: Distinct count of customers who placed an order in the month.
+        tests:
+          - not_null
+      - name: total_units_sold
+        tests:
+          - not_null
+      - name: total_revenue
+        description: Sum of LineTotal across all order lines in the month.
+        tests:
+          - not_null
+      - name: avg_order_value
+        description: Average TotalDue per order in the month.
+      - name: online_order_pct
+        description: Percentage of orders placed via the online channel.
+
+  - name: gold_customer_lifetime_value
+    description: >
+      Customer-level lifetime value metrics and RFM segmentation. Each row
+      represents one customer with aggregated purchase history and a segment
+      label (Champions, Loyal Customers, At Risk, etc.).
+    columns:
+      - name: CustomerID
+        description: Natural key of the customer.
+        tests:
+          - unique
+          - not_null
+      - name: FullName
+        tests:
+          - not_null
+      - name: order_count
+        description: Total number of distinct sales orders placed by the customer.
+        tests:
+          - not_null
+      - name: total_revenue
+        description: Sum of LineTotal across all of the customer's orders.
+        tests:
+          - not_null
+      - name: customer_segment
+        description: RFM-based customer segment label.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Champions
+                - Loyal Customers
+                - Potential Loyalists
+                - New Customers
+                - At Risk
+                - Lost
+                - Needs Attention
+
+  - name: gold_product_performance
+    description: >
+      Product-level performance metrics including revenue, units sold, margin,
+      and discount analysis. Each row represents one product from the catalogue,
+      including products with no sales history (via left join).
+    columns:
+      - name: ProductID
+        description: Natural key of the product.
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        tests:
+          - not_null
+      - name: gross_margin_pct
+        description: >
+          Gross margin percentage: (avg_selling_price - StandardCost) /
+          avg_selling_price * 100.

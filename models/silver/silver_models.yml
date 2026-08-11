@@ -1,0 +1,96 @@
+version: 2
+
+models:
+  - name: silver_customer
+    description: >
+      Cleaned and standardised customer records. Duplicates removed, names
+      trimmed, email addresses lower-cased, and a FullName convenience column
+      derived from FirstName, MiddleName, and LastName.
+    columns:
+      - name: CustomerID
+        description: Natural key of the customer.
+        tests:
+          - unique
+          - not_null
+      - name: EmailAddress
+        description: Lower-cased customer email address.
+        tests:
+          - not_null
+      - name: FullName
+        description: Concatenated full name derived from first, middle, and last names.
+        tests:
+          - not_null
+      - name: ModifiedDate
+        tests:
+          - not_null
+
+  - name: silver_product
+    description: >
+      Cleaned product records with correct data types, nullified empty strings,
+      and deduplication by most recent ModifiedDate.
+    columns:
+      - name: ProductID
+        description: Natural key of the product.
+        tests:
+          - unique
+          - not_null
+      - name: Name
+        description: Product name.
+        tests:
+          - not_null
+      - name: StandardCost
+        description: Manufacturing cost of the product (decimal 19,4).
+        tests:
+          - not_null
+      - name: ListPrice
+        description: Retail price of the product (decimal 19,4).
+        tests:
+          - not_null
+      - name: SellStartDate
+        description: Date from which the product is available for sale.
+        tests:
+          - not_null
+
+  - name: silver_salesorder
+    description: >
+      Cleaned and joined sales order header and detail records. Each row
+      represents one line item on a sales order enriched with header attributes.
+      Deduplication applied to both source tables before joining.
+    columns:
+      - name: SalesOrderDetailID
+        description: Natural key of the sales order line item.
+        tests:
+          - unique
+          - not_null
+      - name: SalesOrderID
+        description: Foreign key to the sales order header.
+        tests:
+          - not_null
+      - name: CustomerID
+        description: Foreign key to the customer.
+        tests:
+          - not_null
+      - name: OrderDate
+        description: Date the order was placed.
+        tests:
+          - not_null
+      - name: ProductID
+        description: Foreign key to the product.
+        tests:
+          - not_null
+      - name: OrderQty
+        description: Quantity ordered.
+        tests:
+          - not_null
+      - name: UnitPrice
+        description: Price per unit at time of order.
+        tests:
+          - not_null
+      - name: LineTotal
+        description: Extended price (UnitPrice * OrderQty * (1 - UnitPriceDiscount)).
+        tests:
+          - not_null
+      - name: TotalDue
+        description: Total amount due for the order.
+        tests:
+          - not_null

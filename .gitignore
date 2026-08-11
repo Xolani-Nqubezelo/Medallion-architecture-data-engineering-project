@@ -1,0 +1,52 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# ── dbt ───────────────────────────────────────────────────────────────────────
+target/
+dbt_packages/
+logs/
+.user.yml
+
+# ── Databricks ────────────────────────────────────────────────────────────────
+.databricks/
+*.dbx/
+.databrickscfg
+
+# ── IDE / Editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Secrets & credentials ─────────────────────────────────────────────────────
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service_account.json
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+desktop.ini

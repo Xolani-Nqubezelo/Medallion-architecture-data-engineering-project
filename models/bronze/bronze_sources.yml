@@ -1,0 +1,132 @@
+version: 2
+
+sources:
+  - name: saleslt
+    schema: saleslt
+    description: >
+      AdventureWorksLT database loaded into the bronze layer via Azure Data Factory
+      from Azure SQL Database. This schema contains the raw transactional data for
+      customers, products, and sales orders.
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    loaded_at_field: ModifiedDate
+    tables:
+      - name: address
+        description: Stores customer shipping and billing addresses.
+        columns:
+          - name: AddressID
+            tests:
+              - unique
+              - not_null
+          - name: City
+            tests:
+              - not_null
+          - name: CountryRegion
+            tests:
+              - not_null
+
+      - name: customer
+        description: Customer master data including contact information.
+        columns:
+          - name: CustomerID
+            tests:
+              - unique
+              - not_null
+          - name: EmailAddress
+            tests:
+              - not_null
+
+      - name: customeraddress
+        description: Junction table linking customers to their addresses with address type.
+        columns:
+          - name: CustomerID
+            tests:
+              - not_null
+          - name: AddressID
+            tests:
+              - not_null
+          - name: AddressType
+            tests:
+              - not_null
+
+      - name: product
+        description: Product catalog with pricing, size, and lifecycle metadata.
+        columns:
+          - name: ProductID
+            tests:
+              - unique
+              - not_null
+          - name: Name
+            tests:
+              - not_null
+          - name: StandardCost
+            tests:
+              - not_null
+          - name: ListPrice
+            tests:
+              - not_null
+
+      - name: productcategory
+        description: Hierarchical product category structure.
+        columns:
+          - name: ProductCategoryID
+            tests:
+              - unique
+              - not_null
+          - name: Name
+            tests:
+              - not_null
+
+      - name: productdescription
+        description: Localised product descriptions.
+        columns:
+          - name: ProductDescriptionID
+            tests:
+              - unique
+              - not_null
+
+      - name: productmodel
+        description: Product model information including catalog descriptions.
+        columns:
+          - name: ProductModelID
+            tests:
+              - unique
+              - not_null
+          - name: Name
+            tests:
+              - not_null
+
+      - name: salesorderdetail
+        description: Line-item detail for each sales order.
+        columns:
+          - name: SalesOrderDetailID
+            tests:
+              - unique
+              - not_null
+          - name: SalesOrderID
+            tests:
+              - not_null
+          - name: ProductID
+            tests:
+              - not_null
+          - name: OrderQty
+            tests:
+              - not_null
+
+      - name: salesorderheader
+        description: Sales order header with customer, status, and financial totals.
+        columns:
+          - name: SalesOrderID
+            tests:
+              - unique
+              - not_null
+          - name: CustomerID
+            tests:
+              - not_null
+          - name: OrderDate
+            tests:
+              - not_null
+          - name: TotalDue
+            tests:
+              - not_null
