@@ -39,7 +39,7 @@ rfm as (
     select
         m.*,
         datediff(current_date(), m.last_order_date) as days_since_last_order,
-        ntile(5) over (order by datediff(current_date(), m.last_order_date) asc)  as recency_score,
+        ntile(5) over (order by datediff(current_date(), m.last_order_date) desc) as recency_score,
         ntile(5) over (order by m.order_count desc)                               as frequency_score,
         ntile(5) over (order by m.total_revenue desc)                             as monetary_score
     from customer_metrics m

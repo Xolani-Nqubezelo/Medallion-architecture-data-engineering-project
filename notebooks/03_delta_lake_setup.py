@@ -28,7 +28,6 @@ spark = SparkSession.builder.getOrCreate()
 
 spark.conf.set("spark.databricks.delta.autoOptimize.optimizeWrite", "true")
 spark.conf.set("spark.databricks.delta.autoOptimize.autoCompact", "true")
-spark.conf.set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
 
 # COMMAND ----------
 # ── Schema / table map ────────────────────────────────────────────────────────

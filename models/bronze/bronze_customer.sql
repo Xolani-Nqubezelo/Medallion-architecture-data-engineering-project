@@ -16,8 +16,6 @@ select
     SalesPerson,
     EmailAddress,
     Phone,
-    PasswordHash,
-    PasswordSalt,
     rowguid,
     ModifiedDate,
     current_timestamp() as _loaded_at

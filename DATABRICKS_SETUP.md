@@ -171,16 +171,16 @@ Task 1: bronze_ingestion
   Notebook: /notebooks/01_bronze_ingestion
   Cluster:  Job cluster (Standard_DS3_v2, 2 workers)
 
-Task 2: dbt_silver  [depends_on: bronze_ingestion]
+Task 2: dbt_snapshots  [depends_on: bronze_ingestion]
+  Type: dbt task
+  Commands: dbt snapshot
+
+Task 3: dbt_silver  [depends_on: dbt_snapshots]
   Type: dbt task
   Commands: dbt run --select tag:silver
   Warehouse: SQL Warehouse
 
-Task 3: dbt_snapshots  [depends_on: dbt_silver]
-  Type: dbt task
-  Commands: dbt snapshot
-
-Task 4: dbt_gold  [depends_on: dbt_snapshots]
+Task 4: dbt_gold  [depends_on: dbt_silver]
   Type: dbt task
   Commands: dbt run --select tag:gold
 
