@@ -1,4 +1,36 @@
-# Building Data Pipelines for Modern Data Engineering | End to End Data Engineering Project (Medallion Architecture)
+# Building Data Pipelines for Modern Data Engineering
+## End-to-End Data Engineering Project — Medallion Architecture
+
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
+![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white)
+![dbt](https://img.shields.io/badge/dbt-FF694B?style=flat-square&logo=dbt&logoColor=white)
+![Delta Lake](https://img.shields.io/badge/Delta_Lake-003366?style=flat-square&logo=apachespark&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+
+> A production-grade implementation of the **Medallion Architecture** (Bronze → Silver → Gold) using Azure Databricks, Delta Lake, dbt, and Azure Data Factory.
+
+### 📚 Documentation
+
+| Document | Description |
+|---|---|
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Data flow, layer design, Delta Lake features |
+| [DATABRICKS_SETUP.md](DATABRICKS_SETUP.md) | Cluster config, ADLS mounts, ADF pipeline, Workflows |
+| [DBT_GUIDE.md](DBT_GUIDE.md) | dbt commands, macros, SCD2 snapshots, testing |
+| [INSTALLATION.md](INSTALLATION.md) | Step-by-step local setup and Docker usage |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Conventions, PR checklist, issue reporting |
+
+### ⚡ Quick Start
+
+```bash
+pip install -r requirements.txt
+dbt debug
+dbt run --select tag:bronze && dbt snapshot
+dbt run --select tag:silver
+dbt run --select tag:gold
+dbt test
+```
+
+---
 
 # Tools and Technologies
 <img width="1325" height="735" alt="image" src="https://github.com/user-attachments/assets/182c1d81-8787-419b-824a-5552ef9bbf9f" />

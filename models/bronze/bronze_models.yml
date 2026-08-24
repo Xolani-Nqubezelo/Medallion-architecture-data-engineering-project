@@ -1,0 +1,96 @@
+version: 2
+
+models:
+  - name: bronze_customer
+    description: Raw customer data loaded from the saleslt source with a load timestamp.
+    columns:
+      - name: CustomerID
+        tests:
+          - unique
+          - not_null
+      - name: EmailAddress
+        tests:
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
+
+  - name: bronze_product
+    description: Raw product catalog data loaded from the saleslt source.
+    columns:
+      - name: ProductID
+        tests:
+          - unique
+          - not_null
+      - name: Name
+        tests:
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
+
+  - name: bronze_salesorderheader
+    description: Raw sales order header records loaded from the saleslt source.
+    columns:
+      - name: SalesOrderID
+        tests:
+          - unique
+          - not_null
+      - name: CustomerID
+        tests:
+          - not_null
+      - name: OrderDate
+        tests:
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
+
+  - name: bronze_salesorderdetail
+    description: Raw sales order line-item records loaded from the saleslt source.
+    columns:
+      - name: SalesOrderDetailID
+        tests:
+          - unique
+          - not_null
+      - name: SalesOrderID
+        tests:
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
+
+  - name: bronze_address
+    description: Raw address records loaded from the saleslt source.
+    columns:
+      - name: AddressID
+        tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
+
+  - name: bronze_customeraddress
+    description: Raw customer-address junction records loaded from the saleslt source.
+    columns:
+      - name: CustomerID
+        tests:
+          - not_null
+      - name: AddressID
+        tests:
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
+
+  - name: bronze_productmodel
+    description: Raw product model records loaded from the saleslt source.
+    columns:
+      - name: ProductModelID
+        tests:
+          - unique
+          - not_null
+      - name: _loaded_at
+        tests:
+          - not_null
