@@ -7,7 +7,7 @@
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-003366?style=flat-square&logo=apachespark&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 
-> A production-grade implementation of the **Medallion Architecture** (Bronze → Silver → Gold) using Azure Databricks, Delta Lake, dbt, and Azure Data Factory.
+> A production-grade implementation of the **Medallion Architecture** (Bronze => Silver => Gold) using Azure Databricks, Delta Lake, dbt, and Azure Data Factory.
 
 ### 📚 Documentation
 
