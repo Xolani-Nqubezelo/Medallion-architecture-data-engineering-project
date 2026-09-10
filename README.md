@@ -1,5 +1,5 @@
 # Building Data Pipelines for Modern Data Engineering
-## End-to-End Data Engineering Project — Medallion Architecture
+## End-to-End Data Engineering Project (Medallion Architecture)
 
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
 ![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white)
